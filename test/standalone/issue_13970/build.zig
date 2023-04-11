@@ -6,16 +6,16 @@ pub fn build(b: *std.Build) void {
 
     const test1 = b.addTest(.{
         .root_source_file = .{ .path = "test_root/empty.zig" },
+        .test_runner = "src/main.zig",
     });
     const test2 = b.addTest(.{
         .root_source_file = .{ .path = "src/empty.zig" },
+        .test_runner = "src/main.zig",
     });
     const test3 = b.addTest(.{
         .root_source_file = .{ .path = "empty.zig" },
+        .test_runner = "src/main.zig",
     });
-    test1.setTestRunner("src/main.zig");
-    test2.setTestRunner("src/main.zig");
-    test3.setTestRunner("src/main.zig");
 
     test_step.dependOn(&test1.run().step);
     test_step.dependOn(&test2.run().step);
